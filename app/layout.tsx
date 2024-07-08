@@ -4,12 +4,14 @@ import { Lato, Poppins } from 'next/font/google'
 import './globals.css'
 
 const lato = Lato({
+  subsets: ['latin'],
   weight: ['300', '400', '700'],
   display: 'swap',
   variable: '--font-lato',
 })
 
 const poppins = Poppins({
+  subsets: ['latin'],
   weight: ['300', '400', '700'],
   display: 'swap',
   variable: '--font-poppins',
