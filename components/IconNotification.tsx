@@ -8,7 +8,7 @@ type NotificationType = {
   width: number
   color: string
   count: number
-} & Omit<HTMLMotionProps<'button'>, 'icon' | 'alt' | 'width' | 'color' | 'count'>
+} & HTMLMotionProps<'button'>
 
 const IconNotification = ({ icon, alt, width, color, count, ...otherProps }: NotificationType) => {
   return (
