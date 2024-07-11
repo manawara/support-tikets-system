@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${lato.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${lato.variable} ${poppins.variable} text-white`}>
       <body>{children}</body>
     </html>
   )

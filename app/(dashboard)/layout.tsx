@@ -8,7 +8,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
       <HamburgerProvider>
         <Header />
         <Sidebar />
-        {children}
+        <div className="mt-2 min-[500px]:ml-[64px]">{children}</div>
       </HamburgerProvider>
     </main>
   )

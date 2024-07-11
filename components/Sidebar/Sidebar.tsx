@@ -45,7 +45,7 @@ const Sidebar = () => {
         transition={{ type: 'spring', stiffness: 300, damping: 25, staggerChildren: 0.5 }}
         className="fixed top-0 left-0 h-full max-h-screen py-4 bg-darkBlue text-white overflow-hidden sm:w-auto "
       >
-        <nav className="px-4 pt-24 flex flex-col justify-between h-full">
+        <nav className="px-4 pt-24 flex flex-col justify-between h-full  min-h-screen pb-4   border-solid border-r">
           <div>
             {menuItems.map((item, index) => (
               <SidebarItem key={index} item={item} isTablet={isTablet} />
