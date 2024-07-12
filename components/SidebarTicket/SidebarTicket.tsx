@@ -1,6 +1,4 @@
-import Image from 'next/image'
 import NavTicketList from './NavTicketList'
-import arrowIcon from '@/public/arrow_up_icon.svg'
 const SidebarTicket = () => {
   return (
     <aside className="py-6 bg-lightBlue px-4 relative">
