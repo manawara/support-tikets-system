@@ -37,8 +37,9 @@ const Sidebar = () => {
 
   return (
     <>
-      <Hamburger className="fixed top-0 mt-3 ml-1" />
-
+      <div className="fixed top-0 left-0 z-20">
+        <Hamburger className="mt-3 ml-1" />
+      </div>
       <motion.aside
         initial={false}
         animate={isMobile ? { width: ctx.open ? 250 : 0 } : { width: ctx.open ? 250 : 64 }}
