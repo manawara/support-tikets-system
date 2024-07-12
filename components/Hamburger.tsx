@@ -1,7 +1,7 @@
 'use client'
 import { useContextHamburger } from '@/context/ContextHamburger'
 import { motion, MotionConfig } from 'framer-motion'
-const Hamburger = ({ className }: { className: string }) => {
+const Hamburger = ({ className }: { className?: string }) => {
   const ctx = useContextHamburger()
   const variants = {
     top: {
