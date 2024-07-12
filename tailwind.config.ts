@@ -12,6 +12,7 @@ const config: Config = {
         midnightBlue: '#41729F',
         blueGray: '#5885AF',
         darkBlue: '#274472',
+        lightBlue: '#375a8e',
         babyBlue: '#C3E0E5',
       },
       fontFamily: {

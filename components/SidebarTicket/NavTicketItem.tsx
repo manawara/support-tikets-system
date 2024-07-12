@@ -15,11 +15,11 @@ const NavTicketItem = ({ name, count, index }: NavTicketItemProps) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
       whileHover={{ scale: 1.05, transition: { duration: 0.1 } }}
-      className="flex items-center justify-between w-full sm:w-auto sm:bg-white rounded-lg p-2"
+      className="flex items-center justify-between w-full sm:w-auto sm:bg-white rounded-lg p-2 cursor-pointer"
     >
-      <Link href="/">
+      <Link href="/" className="flex justify-between items-center w-full">
         <span className="mr-2 sm:text-darkBlue">{name}</span>
-        <span className="bg-babyBlue rounded-md px-3 py-1 text-darkBlue text-xs">{count}</span>
+        <span className="bg-babyBlue rounded-md px-3 py-1 text-darkBlue text-xs ">{count}</span>
       </Link>
     </motion.li>
   )
