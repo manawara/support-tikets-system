@@ -5,3 +5,26 @@
 html {
   font-family: var(--font-poppins), sans-serif;
 }
+.custom-scrollbar {
+  /* For Webkit browsers like Chrome, Safari */
+  &::-webkit-scrollbar {
+    height: 8px; /* Height of horizontal scrollbar */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Light grey track */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #274472; /* Dark blue thumb, adjust this to match your header color */
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #274472; /* Slightly darker on hover */
+  }
+
+  /* For Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #274472 #f1f1f1;
+}
