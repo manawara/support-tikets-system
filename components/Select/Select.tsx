@@ -11,10 +11,10 @@ import { useOutsideClick } from '@/hook/useOutsideClick'
 const Select = ({ data, placeholder, onClick }: SelectProps) => {
   const [open, setOpen] = useState(false)
   const [selectOption, setSelectOption] = useState<null | string>(null)
+
   const selectRef = useRef<HTMLDivElement>(null)
-
   useOutsideClick(selectRef, () => setOpen(false))
-
+  
   const handleOpen = () => setOpen((prev) => !prev)
 
   const handleSelectClick = (item: string) => {
@@ -59,7 +59,6 @@ const Select = ({ data, placeholder, onClick }: SelectProps) => {
           )}
         </AnimatePresence>
       </motion.div>
-
       <AnimatePresence>{open && <SelectList data={data} onSelect={handleSelectClick} />}</AnimatePresence>
     </motion.div>
   )
