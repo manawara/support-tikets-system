@@ -1,5 +1,6 @@
 import React from 'react'
 import { UserType } from './Table'
+import DropDownDots from '../DropDownDots'
 
 type ColumnType = {
   key: keyof UserType | 'action'
@@ -17,9 +18,14 @@ const TableBody: React.FC<TableBodyProps> = ({ data, columns }) => {
       {data.map((item, itemIndex) => (
         <tr key={itemIndex}>
           {columns.map((column) => (
-            <td key={column.key.toString()} className="text-left p-4 font-thin text-sm">
+            <td key={column.key.toString()} className="text-left p-4 font-thin text-sm ">
               {column.key === 'action' ? (
-                <button className="text-blue-600 hover:text-blue-800">Show</button>
+                <DropDownDots
+                  data={[
+                    { id: 1, name: 'Show details', href: 'tickets/' + item.topic },
+                    { id: 2, name: 'Delete' },
+                  ]}
+                />
               ) : (
                 item[column.key as keyof UserType]
               )}
