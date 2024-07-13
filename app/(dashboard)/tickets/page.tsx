@@ -2,7 +2,7 @@ import FilterTicket from '@/components/FilterTicket/FilterTicket'
 import SidebarTicket from '@/components/SidebarTicket/SidebarTicket'
 import Table from '@/components/Table/Table'
 
-const page = () => {
+const TicketPage = () => {
   return (
     <div>
       <FilterTicket />
@@ -14,4 +14,4 @@ const page = () => {
   )
 }
 
-export default page
+export default TicketPage
