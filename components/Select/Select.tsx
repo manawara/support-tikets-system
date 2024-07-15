@@ -1,20 +1,21 @@
 'use client'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import sortIcon from '@/public/sort_icon.svg'
 import cancelIcon from '@/public/cancel_icon.svg'
 import SelectList from './SelectList'
 import { SelectProps } from './types'
 import { useOutsideClick } from '@/hook/useOutsideClick'
 
-const Select = ({ data, placeholder, onClick }: SelectProps) => {
+const Select = ({ data, placeholder, onClick, icon, select }: SelectProps) => {
   const [open, setOpen] = useState(false)
   const [selectOption, setSelectOption] = useState<null | string>(null)
-
+  useEffect(() => {
+    if (select) setSelectOption(select)
+  }, [select])
   const selectRef = useRef<HTMLDivElement>(null)
   useOutsideClick(selectRef, () => setOpen(false))
-  
+
   const handleOpen = () => setOpen((prev) => !prev)
 
   const handleSelectClick = (item: string) => {
@@ -42,7 +43,7 @@ const Select = ({ data, placeholder, onClick }: SelectProps) => {
         onClick={handleOpen}
         whileTap={{ scale: 0.95 }}
       >
-        <Image src={sortIcon} alt="Sort icon" width={18} />
+        {icon && <Image src={icon} alt="Sort icon" width={18} />}
         {selectOption || placeholder || 'Choose option'}
         <AnimatePresence>
           {selectOption && (

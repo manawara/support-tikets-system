@@ -4,8 +4,10 @@ export type SelectItemData = {
 }
 
 export type SelectProps = {
+  icon?: string
   data: SelectItemData[]
   placeholder?: string
+  select?: string
   onClick?: (item: string) => void
 }
 
