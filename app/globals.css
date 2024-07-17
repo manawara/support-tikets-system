@@ -28,3 +28,40 @@ html {
   scrollbar-width: thin;
   scrollbar-color: #274472 #f1f1f1;
 }
+.ql-snow button .ql-stroke {
+  stroke: #ffffff;
+}
+.ql-snow .ql-active .ql-stroke {
+  stroke: #ffffff;
+}
+.ql-snow.ql-toolbar button.ql-active .ql-stroke {
+  stroke: rgb(209 213 219 / var(--tw-text-opacity)) !important;
+}
+.ql-snow.ql-toolbar button:hover {
+  stroke: rgb(209 213 219 / var(--tw-text-opacity)) !important;
+}
+
+.ql-snow button:hover {
+  stroke: rgb(209 213 219 / var(--tw-text-opacity)) !important;
+}
+.ql-snow.ql-toolbar button:hover .ql-stroke {
+  stroke: rgb(209 213 219 / var(--tw-text-opacity)) !important;
+}
+.ql-snow .ql-fill {
+  fill: #ffffff !important;
+}
+
+.ql-snow .ql-picker {
+  color: #ffffff !important;
+}
+.ql-snow.ql-toolbar .ql-picker-label:hover {
+  color: rgb(209 213 219 / var(--tw-text-opacity)) !important;
+}
+
+.ql-snow .ql-stroke {
+  stroke: #ffffff !important;
+}
+
+.ql-snow .ql-picker.ql-header .ql-picker-item::before {
+  color: #274472;
+}
