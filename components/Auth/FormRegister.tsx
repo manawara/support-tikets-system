@@ -9,7 +9,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from '../Button'
 import { RegisterSchema } from '@/schemas'
 import { ErrorMessage } from '@hookform/error-message'
-
+import confirmIcon from '@/public/confrim_icon.svg'
+import Image from 'next/image'
 const FormRegister = () => {
   const [pending, startTransition] = useTransition()
   const [error, setError] = useState<string | undefined>('')
@@ -41,7 +42,6 @@ const FormRegister = () => {
           reset()
         })
         .catch((err) => {
-          console.error('Submission error:', err)
           setError('An unexpected error occurred')
         })
     })
@@ -56,7 +56,7 @@ const FormRegister = () => {
           label="First Name"
           type="text"
           {...register('firstName')}
-          disabled={pending}
+          disabled={pending ? true : false}
         />
         <div className="text-red-500 text-xs ">
           <ErrorMessage errors={errors} name="firstName" />
@@ -69,7 +69,7 @@ const FormRegister = () => {
           label="Last Name"
           type="text"
           {...register('lastName')}
-          disabled={pending}
+          disabled={pending ? true : false}
         />
         <div className="text-red-500 text-xs ">
           <ErrorMessage errors={errors} name="lastName" />
@@ -83,7 +83,7 @@ const FormRegister = () => {
           label="Email"
           type="email"
           {...register('email')}
-          disabled={pending}
+          disabled={pending ? true : false}
         />
         <div className="text-red-500 text-xs ">
           <ErrorMessage errors={errors} name="email" />
@@ -96,10 +96,20 @@ const FormRegister = () => {
           <ErrorMessage errors={errors} name="password" />
         </div>
       </div>
-      {error && <div className="my-4 flex justify-center">{error}</div>}
-      {success && <div className="my-4 flex justify-center">{success}</div>}
+      {error && (
+        <div className="my-4 flex justify-center">
+          <span className="text-red-500  text-shadow-white  px-4 py-2 flex items-center gap-4 text-sm">{error}</span>
+        </div>
+      )}
+      {success && (
+        <div className="my-4 flex justify-center">
+          <span className="text-green-500  text-shadow-white  px-4 py-2 flex items-center gap-4 text-sm">
+            <Image src={confirmIcon} alt="confirm icon" width={22} /> {success}
+          </span>
+        </div>
+      )}
       <div className="w-1/2 mx-auto mt-2">
-        <Button disabled={pending}>Register</Button>
+        <Button disabled={pending ? true : false}>Register</Button>
       </div>
       <div className="mt-4 text-sm flex justify-center">
         Already have an account?{' '}
