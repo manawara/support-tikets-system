@@ -33,6 +33,6 @@ export const createUser = async (values: z.infer<typeof RegisterSchema>) => {
     },
   })
   return {
-    success: 'User created!',
+    success: 'The user has been created!',
   }
 }
