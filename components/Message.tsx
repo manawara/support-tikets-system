@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import Card from './Card'
 import Image from 'next/image'
 import profileIcon from '@/public/profile.jpeg'
 
-const Message = ({ children }) => {
+const Message = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <Card>

@@ -1,6 +1,5 @@
 import TicketDetails from '@/components/TicketDetails'
 import AssignUser from '@/components/AssignUser'
-import Card from '@/components/Card'
 import Message from '@/components/Message'
 import RichText from '@/components/RichText'
 

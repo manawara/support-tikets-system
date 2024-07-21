@@ -1,33 +1,28 @@
 'use client'
-import React, { InputHTMLAttributes } from 'react'
+import React, { InputHTMLAttributes, forwardRef } from 'react'
 import { AnimatePresence, MotionProps, motion } from 'framer-motion'
 
 type InputProps = {
   label?: string
+  isExpended?: boolean
+  placeholder?: string
 } & InputHTMLAttributes<HTMLInputElement> &
   MotionProps
 
-const Input = ({ label, ...props }: InputProps) => {
+const Input = forwardRef<HTMLInputElement, InputProps>(({ label, isExpended, placeholder, ...props }, ref) => {
   return (
     <motion.div
-      className="relative mb-4"
+      className={`relative my-3 ${placeholder ? 'mb-2' : ''}`}
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <motion.input
-        {...props}
-        className="w-3/4 px-3 py-2 font-poppins text-sm text-white placeholder:text-gray-300 bg-[#1e3658] rounded-md focus:outline-none border-[1px] border-solid border-[#5d8fc9] focus:ring-1 focus:ring-[#7da7d9] transition-all duration-300 ease-in-out"
-        whileFocus={{ width: '100%' }}
-        placeholder=""
-      />
       <AnimatePresence>
         {label && (
           <motion.label
-            className="absolute left-3 top-[9px] text-sm text-gray-50 transition-all duration-300 ease-in-out pointer-events-none"
-            initial={{ y: 0 }}
+            className={`text-sm  text-gray-50 transition-all duration-300 ease-in-out pointer-events-none
+            `}
             animate={{
-              y: props.value ? -24 : 0,
               scale: props.value ? 0.8 : 1,
               color: props.value ? '#d1d5db' : '#ffffff',
             }}
@@ -36,8 +31,19 @@ const Input = ({ label, ...props }: InputProps) => {
           </motion.label>
         )}
       </AnimatePresence>
+      <motion.input
+        {...props}
+        ref={ref}
+        className={`${
+          !isExpended ? 'w-3/4' : 'w-full'
+        } px-3 py-2 font-poppins text-sm text-white placeholder:text-gray-300 bg-[#1e3658] rounded-md focus:outline-none border-[1px] border-solid border-[#5d8fc9] focus:ring-1 focus:ring-[#7da7d9] transition-all duration-300 ease-in-out`}
+        whileFocus={!isExpended ? { width: '100%' } : undefined}
+        placeholder={placeholder ? placeholder : ''}
+      />
     </motion.div>
   )
-}
+})
+
+Input.displayName = 'Input'
 
 export default Input
