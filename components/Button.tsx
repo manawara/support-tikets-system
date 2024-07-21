@@ -8,7 +8,7 @@ type BaseProps = {
 }
 
 // Button specific types
-type ButtonProps = BaseProps & HTMLAttributes<HTMLButtonElement> & MotionProps
+type ButtonProps = { disabled?: boolean } & BaseProps & HTMLAttributes<HTMLButtonElement> & MotionProps
 
 // Link specific types
 type LinkProps = {
@@ -16,7 +16,7 @@ type LinkProps = {
 } & BaseProps &
   HTMLMotionProps<'div'>
 
-const Button = ({ children, ...props }: ButtonProps) => {
+const Button = ({ children, disabled, ...props }: ButtonProps) => {
   return (
     <motion.button
       className="bg-darkBlue border border-solid rounded-md p-2 px-4 text-sm w-full"
@@ -25,6 +25,7 @@ const Button = ({ children, ...props }: ButtonProps) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
+      disabled={disabled}
       {...props}
     >
       {children}
