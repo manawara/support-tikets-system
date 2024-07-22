@@ -3,6 +3,8 @@ import { z } from 'zod'
 export const RegisterSchema = z.object({
   firstName: z
     .string()
+    .min(1, { message: 'First name is required' })
+
     .min(3, { message: 'First name must be at least 3 characters' })
     .max(50, { message: 'Fist name cannot exceed 50 characters' }),
   lastName: z
