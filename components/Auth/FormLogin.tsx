@@ -14,6 +14,8 @@ import loginUser from '@/actions/login'
 const FormLogin = () => {
   const [pending, startTransition] = useTransition()
   const [error, setError] = useState<string | undefined>('')
+  const [success, setSuccess] = useState<string | undefined>('')
+
   const {
     reset,
     register,
@@ -26,14 +28,16 @@ const FormLogin = () => {
       password: '',
     },
   })
-  console.log(error)
+
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setError('')
-
+    setSuccess('')
     startTransition(() => {
       loginUser(values)
         .then((data) => {
           setError(data?.error)
+          setSuccess(data?.success)
+
           reset()
         })
         .catch((err) => {
@@ -76,7 +80,13 @@ const FormLogin = () => {
           <span className="text-red-500  text-shadow-white  px-4 py-2 flex items-center gap-4 text-sm">{error}</span>
         </div>
       )}
-
+      {success && (
+        <div className="my-4 flex justify-center">
+          <span className="text-green-500  text-shadow-white  px-4 py-2 flex items-center gap-4 text-sm">
+            {success}
+          </span>
+        </div>
+      )}
       <div className="w-1/2 mx-auto mt-4">
         <Button disabled={pending ? true : false}>Login</Button>
       </div>
