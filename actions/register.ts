@@ -2,7 +2,7 @@
 import * as z from 'zod'
 import bcrypt from 'bcryptjs'
 import { RegisterSchema } from '@/schemas'
-import { addUser, getUserByEmail } from '@/data'
+import { addUser, generateVerificationToken, getUserByEmail } from '@/data'
 export const createUser = async (values: z.infer<typeof RegisterSchema>) => {
   const validatedFields = RegisterSchema.safeParse(values)
 
@@ -20,8 +20,10 @@ export const createUser = async (values: z.infer<typeof RegisterSchema>) => {
     return { error: 'Email already in use' }
   }
   await addUser(fullName, email, hashedPassword)
+  const verificationToken = await generateVerificationToken(email)
 
+  //todo sent email
   return {
-    success: 'The user has been created!',
+    success: 'Confirmation email sent!',
   }
 }
