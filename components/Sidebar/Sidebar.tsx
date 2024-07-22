@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useContextHamburger } from '@/context/ContextHamburger'
-
+import { signOutUser } from '@/actions/signOut'
 import dashboardIcon from '@/public/dashboard_icon.svg'
 import reportIcon from '@/public/report_icon.svg'
 import settingIcon from '@/public/setting_icon.svg'
@@ -24,15 +24,17 @@ const Sidebar = () => {
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
-
+  const handleSignOut = async () => {
+    await signOutUser()
+  }
   const isMobile = windowWidth !== null && windowWidth < 500
   const isTablet = windowWidth !== null && windowWidth > 500
 
   const menuItems = [
-    { icon: dashboardIcon, text: 'Dashboard', href: '/' },
-    { icon: reportIcon, text: 'Reports', href: '/reports' },
-    { icon: ticketIcon, text: 'Tickets', href: '/tickets' },
-    { icon: teamIcon, text: 'Team', href: '/team' },
+    { icon: dashboardIcon, text: 'Dashboard', href: '/dashboard' },
+    { icon: reportIcon, text: 'Reports', href: '/dashboard/reports' },
+    { icon: ticketIcon, text: 'Tickets', href: '/dashboard/tickets' },
+    { icon: teamIcon, text: 'Team', href: '/dashboard/team' },
   ]
 
   return (
@@ -54,8 +56,18 @@ const Sidebar = () => {
           </div>
 
           <div>
-            <SidebarItem item={{ icon: settingIcon, text: 'Settings', href: '/settings' }} isTablet={isTablet} />
-            <SidebarItem item={{ icon: signoutIcon, text: 'Sign Out', href: '/signout' }} isTablet={isTablet} />
+            <SidebarItem
+              item={{ icon: settingIcon, text: 'Settings', href: '/dashboard/settings' }}
+              isTablet={isTablet}
+            />
+            <SidebarItem
+              item={{
+                icon: signoutIcon,
+                text: 'Sign Out',
+                onClick: handleSignOut,
+              }}
+              isTablet={isTablet}
+            />
           </div>
         </nav>
       </motion.aside>

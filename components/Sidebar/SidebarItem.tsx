@@ -6,17 +6,24 @@ import Link from 'next/link'
 type ItemType = {
   text: string
   icon: string
-  href: string
+  href?: string
+  onClick?: () => void
 }
 
 type SidebarType = {
   isTablet: boolean
   item: ItemType
 }
+
 const SidebarItem = ({ item, isTablet }: SidebarType) => {
   const ctx = useContextHamburger()
+
+  const ContentWrapper = ({ children }: { children: React.ReactNode }) => {
+    return item.href ? <Link href={item.href}>{children}</Link> : <button onClick={item.onClick}>{children}</button>
+  }
+
   return (
-    <Link href={item.href}>
+    <ContentWrapper>
       <motion.div
         className="flex items-center h-12 cursor-pointer"
         whileHover={{ scale: 1.05 }}
@@ -39,7 +46,7 @@ const SidebarItem = ({ item, isTablet }: SidebarType) => {
           )}
         </AnimatePresence>
       </motion.div>
-    </Link>
+    </ContentWrapper>
   )
 }
 
