@@ -1,8 +1,6 @@
-import { auth } from './auth'
+export const publicRoutes = ['/verification']
 
-export const publicRoutes = ['/']
-
-export const authRoutes = ['/auth/login', '/auth/register']
+export const authRoutes = ['/auth/login', '/auth/register', '/']
 export const apiAuthPrefix = '/api/auth'
 
 export const DEFAULT_LOGIN_REDIRECT = '/dashboard'
