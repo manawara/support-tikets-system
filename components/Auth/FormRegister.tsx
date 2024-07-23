@@ -37,9 +37,12 @@ const FormRegister = () => {
     startTransition(() => {
       createUser(values)
         .then((data) => {
-          setError(data.error)
-          setSuccess(data.success || 'Registration successful!')
-          reset()
+          if (data?.error) {
+            setError(data.error)
+          } else if (data?.success) {
+            setSuccess(data.success)
+            reset() // Reset only on success
+          }
         })
         .catch((err) => {
           setError('An unexpected error occurred')

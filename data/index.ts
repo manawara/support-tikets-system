@@ -59,3 +59,42 @@ export const generateVerificationToken = async (email: string) => {
 
   return verificationToken
 }
+
+export const activateAccount = async (email: string): Promise<void> => {
+  const emailVerified = await db.user.update({
+    where: { email },
+    data: {
+      emailVerified: new Date(),
+    },
+  })
+}
+
+export const verificationAccount = async (token: string) => {
+  try {
+    const tokenValid = await db.verificationToken.findUnique({
+      where: { token },
+    })
+
+    if (tokenValid) {
+      const isActivatedUser = await db.user.findFirst({
+        where: { email: tokenValid.email },
+      })
+
+      if (isActivatedUser?.emailVerified !== null) {
+        return { error: 'Account activated' }
+      }
+      if (tokenValid?.expires > new Date()) {
+        await activateAccount(tokenValid.email)
+      } else {
+        return { error: 'Token expired!' }
+      }
+    }
+
+    if (!tokenValid) return { error: 'Token is invalid' }
+    return {
+      success: 'Account was successfull activated!',
+    }
+  } catch (err) {
+    return { error: 'Something went wrong!' }
+  }
+}

@@ -35,10 +35,12 @@ const FormLogin = () => {
     startTransition(() => {
       loginUser(values)
         .then((data) => {
-          setError(data?.error)
-          setSuccess(data?.success)
-
-          reset()
+          if (data?.error) {
+            setError(data.error)
+          } else if (data?.success) {
+            setSuccess(data.success)
+            reset() // Reset only on success
+          }
         })
         .catch((err) => {
           setError('An unexpected error occurred')
@@ -54,7 +56,7 @@ const FormLogin = () => {
           placeholder="login@example.com"
           label="Email"
           type="email"
-          {...register('email')}
+          {...register('email', { required: true })}
           disabled={pending ? true : false}
         />
         <div className="text-red-500 text-xs ">
@@ -68,7 +70,7 @@ const FormLogin = () => {
           label="Password"
           type="password"
           placeholder="********"
-          {...register('password')}
+          {...register('password', { required: true })}
           disabled={pending}
         />
         <div className="text-red-500 text-xs ">
@@ -87,8 +89,8 @@ const FormLogin = () => {
           </span>
         </div>
       )}
-      <div className="w-1/2 mx-auto mt-4">
-        <Button disabled={pending ? true : false}>Login</Button>
+      <div className="w-1/2 mx-auto mt-4 ">
+        <Button disabled={pending ? true : false}>{pending ? 'Logging' : 'Login'}</Button>
       </div>
       <div className="mt-4 text-sm flex justify-center">
         Don&apos;t have an account?{' '}

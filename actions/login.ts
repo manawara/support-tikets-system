@@ -5,10 +5,10 @@ import { signIn } from '@/auth'
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes'
 import { AuthError } from 'next-auth'
 import { generateVerificationToken, getUserByEmail } from '@/data'
+import { sendVerificationEmail } from '@/lib/mail'
 
 const loginUser = async (values: z.infer<typeof LoginSchema>) => {
   const validatedFields = LoginSchema.safeParse(values)
-
   if (!validatedFields.success) {
     return {
       error: 'Invalid fields',
@@ -23,7 +23,9 @@ const loginUser = async (values: z.infer<typeof LoginSchema>) => {
     }
   }
   if (!existingUser.emailVerified) {
-    await generateVerificationToken(email)
+    const { token } = await generateVerificationToken(email)
+    await sendVerificationEmail(token, email, existingUser.name as string)
+
     return { success: 'Confirmation sent to email' }
   }
   try {
