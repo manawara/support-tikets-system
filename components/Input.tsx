@@ -4,12 +4,12 @@ import { AnimatePresence, MotionProps, motion } from 'framer-motion'
 
 type InputProps = {
   label?: string
-  isExpended?: boolean
+  isExpanded?: boolean
   placeholder?: string
 } & InputHTMLAttributes<HTMLInputElement> &
   MotionProps
 
-const Input = forwardRef<HTMLInputElement, InputProps>(({ label, isExpended, placeholder, ...props }, ref) => {
+const Input = forwardRef<HTMLInputElement, InputProps>(({ label, isExpanded, placeholder, ...props }, ref) => {
   return (
     <motion.div
       className={`relative my-3 ${placeholder ? 'mb-2' : ''}`}
@@ -35,9 +35,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ label, isExpended, pla
         {...props}
         ref={ref}
         className={`${
-          !isExpended ? 'w-3/4' : 'w-full'
+          !isExpanded ? 'w-3/4' : 'w-full'
         } px-3 py-2 font-poppins text-sm text-white placeholder:text-gray-300 bg-[#1e3658] rounded-md focus:outline-none border-[1px] border-solid border-[#5d8fc9] focus:ring-1 focus:ring-[#7da7d9] transition-all duration-300 ease-in-out`}
-        whileFocus={!isExpended ? { width: '100%' } : undefined}
+        whileFocus={!isExpanded ? { width: '100%' } : undefined}
         placeholder={placeholder ? placeholder : ''}
       />
     </motion.div>

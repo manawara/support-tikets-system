@@ -54,7 +54,7 @@ const FormRegister = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <Input
-          isExpended
+          isExpanded
           placeholder="Your first name"
           label="First Name"
           type="text"
@@ -67,7 +67,7 @@ const FormRegister = () => {
       </div>
       <div>
         <Input
-          isExpended
+          isExpanded
           placeholder="Your last name"
           label="Last Name"
           type="text"
@@ -81,7 +81,7 @@ const FormRegister = () => {
 
       <div>
         <Input
-          isExpended
+          isExpanded
           placeholder="login@example.com"
           label="Email"
           type="email"
@@ -94,7 +94,7 @@ const FormRegister = () => {
       </div>
 
       <div>
-        <Input isExpended label="Password" type="password" {...register('password')} disabled={pending} />
+        <Input isExpanded label="Password" type="password" {...register('password')} disabled={pending} />
         <div className="text-red-500 text-xs ">
           <ErrorMessage errors={errors} name="password" />
         </div>

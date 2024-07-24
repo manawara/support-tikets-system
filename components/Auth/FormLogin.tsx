@@ -52,7 +52,7 @@ const FormLogin = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <Input
-          isExpended
+          isExpanded
           placeholder="login@example.com"
           label="Email"
           type="email"
@@ -66,7 +66,7 @@ const FormLogin = () => {
 
       <div>
         <Input
-          isExpended
+          isExpanded
           label="Password"
           type="password"
           placeholder="********"
