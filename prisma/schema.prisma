@@ -1,7 +1,7 @@
 // prisma/schema.prisma
 datasource db {
   provider  = "postgresql"
-  url  	    = env("DATABASE_URL")
+  url       = env("DATABASE_URL")
   // uncomment next line if you use Prisma <5.10
   // directUrl = env("DATABASE_URL_UNPOOLED")
 }
@@ -11,40 +11,39 @@ generator client {
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String  @map("user_id")
-  type               String
-  provider           String
-  providerAccountId  String  @map("provider_account_id")
-  refresh_token      String? @db.Text
-  access_token       String? @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String? @db.Text
-  session_state      String?
- 
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
   @@unique([provider, providerAccountId])
   @@map("accounts")
 }
- 
+
 model User {
   id            String    @id @default(cuid())
   name          String?
-  email         String? @unique
-  emailVerified DateTime? @map("email_verified")
-  password     String?
+  email         String?   @unique
+  emailVerified DateTime?
+  password      String?
   image         String?
-  role          Role @default(USER)
+  role          Role      @default(USER)
   accounts      Account[]
+  tickets       Ticket[]
+  teams         Team[]    @relation("TeamUsers")
 
- 
   @@map("users")
 }
- 
-
 
 enum Role {
   USER
@@ -52,10 +51,38 @@ enum Role {
 }
 
 model verificationToken {
-  id String @default(cuid())
-  email      String
-  token      String @unique
-  expires    DateTime
- 
-  @@unique([email,token])
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model Ticket {
+  id        Int      @id @default(autoincrement())
+  topic     String   @default("New")
+  client    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  priority  String
+
+  agent   User @relation(fields: [agentId], references: [id])
+  agentId String
+
+  team   Team @relation(fields: [teamId], references: [id])
+  teamId Int
+  
+  @@map("tickets")
+
+}
+
+model Team {
+  id      Int      @id @default(autoincrement())
+  name    String
+  tickets Ticket[]
+  users   User[]    @relation("TeamUsers")
+
+  @@map("teams")
+
 }
