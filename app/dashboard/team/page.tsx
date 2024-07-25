@@ -1,9 +1,14 @@
-import React from 'react'
-import NavTicketList from '@/components/SidebarTicket/NavTicketList'
+import React, { Suspense } from 'react'
+import NavList from '@/components/SidebarTicket/NavList'
 import Input from '@/components/Input'
 import Table from '@/components/Table/Table'
 import NewTeam from '@/components/Team/NewTeam'
-const TeamPage = () => {
+import { getAllTeams } from '@/data/team'
+import NavListTeam from '@/components/Team/NavListTeam'
+
+const TeamPage = async () => {
+  const teams = await getAllTeams()
+
   const data = [
     {
       fullName: 'Bill Gates',
@@ -21,6 +26,7 @@ const TeamPage = () => {
     { key: 'role', header: 'Role' },
     { key: 'action', header: '' },
   ]
+
   return (
     <div className="flex flex-col px-8">
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
@@ -31,17 +37,9 @@ const TeamPage = () => {
           <NewTeam />
         </div>
       </div>
-      <NavTicketList
-        title="Teams"
-        items={[
-          { name: 'All tickets', count: 21 },
-          { name: 'New', count: 1 },
-          { name: 'Open Tickets', count: 1 },
-          { name: 'On hold', count: 1 },
-          { name: 'Urgent', count: 1 },
-          { name: 'Closed Tickets', count: 1 },
-        ]}
-      />
+      <Suspense fallback="<div>Loading...</div>">
+        <NavListTeam teams={teams} />
+      </Suspense>
       <Table data={data} columns={columns} namePage="team" />
     </div>
   )
