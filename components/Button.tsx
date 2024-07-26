@@ -37,7 +37,7 @@ const LinkButton = ({ href, children, ...props }: LinkProps) => {
   return (
     <Link href={href} passHref>
       <motion.div
-        className="bg-darkBlue border border-solid rounded-md p-2 px-4 text-sm w-full inline-block text-center"
+        className="bg-darkBlue border border-solid rounded-md p-1 px-4 text-sm w-full inline-block text-center"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, y: 20 }}
