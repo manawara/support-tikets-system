@@ -11,8 +11,8 @@ import { useOutsideClick } from '@/hook/useOutsideClick'
 const SearchTeam = () => {
   const [search, setSearch] = useState<string>('')
   const [debouncedSearch, setDebouncedSearch] = useState<string>('')
-  const inputRef = useRef<HTMLInputElement>(null)
-  useOutsideClick(inputRef, () => setSearch(''))
+  const liRef = useRef<HTMLLIElement>(null)
+  useOutsideClick(liRef, () => setSearch(''))
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedSearch(search)
@@ -33,14 +33,14 @@ const SearchTeam = () => {
 
   return (
     <div className="w-full max-w-[320px] sm:max-w-72 flex flex-col relative">
-      <Input label="Search person" onChange={handleChangeSearch} name="search" value={search} ref={inputRef} />
+      <Input label="Search person" onChange={handleChangeSearch} name="search" value={search} />
       <div>
         <ul className="text-xs absolute">
           <AnimatePresence>
             {debouncedSearch && searched && searched.users.length > 0 && (
               <Card>
                 {searched.users.map((user) => (
-                  <li key={user.uid} className="w-[200px] ">
+                  <li key={user.uid} className="w-[200px]" ref={liRef}>
                     <Link
                       href={`/dashboard/team/${user.uid}`}
                       className="flex justify-between w-full h-full py-2 px-4 hover:bg-midnightBlue"
