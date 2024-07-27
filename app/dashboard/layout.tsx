@@ -1,16 +1,19 @@
 import Header from '@/components/Header/Header'
+import RootQueryClientProvider from '@/components/RootQueryClientProvider'
 import Sidebar from '@/components/Sidebar/Sidebar'
 import HamburgerProvider from '@/context/ContextHamburger'
-import { ReactNode } from 'react'
-const DashboardLayout = ({ children }: { children: ReactNode }) => {
+
+const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main>
-      <HamburgerProvider>
-        <Header />
-        <Sidebar />
-        <div className="mt-20 min-[500px]:ml-[64px]">{children}</div>
-      </HamburgerProvider>
-    </main>
+    <RootQueryClientProvider>
+      <main>
+        <HamburgerProvider>
+          <Header />
+          <Sidebar />
+          <div className="mt-20 min-[500px]:ml-[64px]">{children}</div>
+        </HamburgerProvider>
+      </main>
+    </RootQueryClientProvider>
   )
 }
 
