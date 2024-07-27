@@ -1,4 +1,4 @@
-import NavList from './NavList'
+import NavList from '@/components/NavList/NavList'
 const SidebarTicket = () => {
   return (
     <aside className="py-6 bg-lightBlue px-4 relative">

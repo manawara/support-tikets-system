@@ -1,11 +1,14 @@
-import React from 'react'
+import PaginationComponent from '../Pagination'
+import { PaginateType } from '@/types'
 
-const TableFooter = () => {
+const TableFooter = ({ paginationOptions, loading }: { paginationOptions?: PaginateType; loading?: boolean }) => {
   return (
     <tfoot className="bg-darkBlue">
       <tr>
         <td colSpan={100} className="p-4 w-full">
-          <div className="text-xs font-thin">1-20 of 100</div>
+          <div className=" flex text-xs font-thin">
+            {paginationOptions && !loading && <PaginationComponent {...paginationOptions} />}
+          </div>
         </td>
       </tr>
     </tfoot>

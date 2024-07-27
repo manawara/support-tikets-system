@@ -1,8 +1,5 @@
 import React from 'react'
-
-type TableHeaderProps<T> = {
-  columns: { key: keyof T; header: string }[]
-}
+import { TableHeaderProps } from '@/types'
 
 const TableHeader = <T,>({ columns }: TableHeaderProps<T>) => {
   return (

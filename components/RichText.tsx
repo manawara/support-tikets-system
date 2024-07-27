@@ -1,9 +1,9 @@
 'use client'
+import Image from 'next/image'
 import { useState } from 'react'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import sendIcon from '@/public/send.svg'
-import Image from 'next/image'
 
 const RichText = () => {
   const [convertedText, setConvertedText] = useState('Some default content')

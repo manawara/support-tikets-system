@@ -3,14 +3,15 @@ import React, { useTransition, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Link from 'next/link'
 import * as z from 'zod'
+import Image from 'next/image'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { ErrorMessage } from '@hookform/error-message'
 import { createUser } from '@/actions/register'
 import Input from '@/components/Input'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from '../Button'
 import { RegisterSchema } from '@/schemas'
-import { ErrorMessage } from '@hookform/error-message'
 import confirmIcon from '@/public/confrim_icon.svg'
-import Image from 'next/image'
+
 const FormRegister = () => {
   const [pending, startTransition] = useTransition()
   const [error, setError] = useState<string | undefined>('')

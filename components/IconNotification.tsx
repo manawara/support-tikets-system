@@ -1,15 +1,7 @@
 'use client'
 import Image from 'next/image'
-import { AnimatePresence, motion, HTMLMotionProps } from 'framer-motion'
-
-type NotificationType = {
-  icon: string
-  alt: string
-  width: number
-  color: string
-  count: number
-} & Omit<HTMLMotionProps<'button'>, 'icon' | 'alt' | 'width' | 'color' | 'count'>
-
+import { AnimatePresence, motion } from 'framer-motion'
+import { NotificationType } from '@/types'
 const IconNotification = ({ icon, alt, width, color, count, ...otherProps }: NotificationType) => {
   return (
     <motion.button

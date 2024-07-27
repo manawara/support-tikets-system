@@ -1,7 +1,4 @@
-type EmailTemplateType = {
-  name: string
-  token: string
-}
+import { EmailTemplateType } from '@/types'
 
 const EmailTemplate = ({ name, token }: EmailTemplateType) => {
   return `

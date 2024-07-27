@@ -8,6 +8,8 @@ datasource db {
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["omitApi"]
+
 }
 
 model Account {
@@ -41,6 +43,8 @@ model User {
   accounts      Account[]
   tickets       Ticket[]
   teams         Team[]    @relation("TeamUsers")
+  uid           Int      @default(autoincrement())
+
 
   @@map("users")
 }

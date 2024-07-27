@@ -10,7 +10,7 @@ import signoutIcon from '@/public/signout_icon.svg'
 import teamIcon from '@/public/team_icon.svg'
 import ticketIcon from '@/public/ticket_icon.svg'
 import SidebarItem from './SidebarItem'
-import Hamburger from '../Hamburger'
+import Hamburger from '@/components/Hamburger'
 
 const Sidebar = () => {
   const [windowWidth, setWindowWidth] = useState<number | null>(null)

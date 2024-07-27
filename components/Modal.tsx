@@ -1,13 +1,7 @@
 'use client'
-import { forwardRef, useImperativeHandle, useRef, ReactNode } from 'react'
-type ModalType = {
-  children: ReactNode
-  className?: string
-}
-export type ModalRef = {
-  open: () => void
-  close: () => void
-}
+import { forwardRef, useImperativeHandle, useRef } from 'react'
+import { ModalRef, ModalType } from '@/types/Modal.type'
+
 const Modal = forwardRef<ModalRef, ModalType>(({ children, className }, ref) => {
   const dialogRef = useRef<HTMLDialogElement>(null)
   useImperativeHandle(ref, () => ({

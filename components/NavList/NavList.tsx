@@ -1,18 +1,6 @@
 import React from 'react'
 import NavListItem from './NavListItem'
-
-type NavItemType = {
-  id: number
-  name: string
-  count?: number
-}
-
-type NavTicketProps = {
-  items: NavItemType[]
-  title: string
-  isClose?: boolean
-  onClick?: (id: number) => void
-}
+import { NavTicketProps } from '@/types/NavList.type'
 
 const NavList = ({ items, title, isClose, onClick }: NavTicketProps) => {
   return (

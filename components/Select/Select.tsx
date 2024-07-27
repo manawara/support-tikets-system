@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import cancelIcon from '@/public/cancel_icon.svg'
 import SelectList from './SelectList'
-import { SelectProps } from './types'
+import { SelectProps } from '@/types'
 import { useOutsideClick } from '@/hook/useOutsideClick'
 
 const Select = ({ data, placeholder, onClick, icon, select }: SelectProps) => {

@@ -1,19 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion'
+import Link from 'next/link'
 import Image from 'next/image'
 import { useContextHamburger } from '@/context/ContextHamburger'
-import Link from 'next/link'
-
-type ItemType = {
-  text: string
-  icon: string
-  href?: string
-  onClick?: () => void
-}
-
-type SidebarType = {
-  isTablet: boolean
-  item: ItemType
-}
+import { SidebarType } from '@/types'
 
 const SidebarItem = ({ item, isTablet }: SidebarType) => {
   const ctx = useContextHamburger()

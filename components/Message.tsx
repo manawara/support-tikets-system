@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
-import Card from './Card'
 import Image from 'next/image'
+import Card from './Card'
 import profileIcon from '@/public/profile.jpeg'
 
 const Message = ({ children }: { children: ReactNode }) => {

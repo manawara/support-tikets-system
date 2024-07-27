@@ -1,6 +1,4 @@
-import React from 'react'
-
-const AssignUser = ({ title }) => {
+const AssignUser = ({ title }: { title: string }) => {
   return (
     <div className="flex flex-col my-4">
       <span className="flex justify-between text-gray-300">{title}</span>

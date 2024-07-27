@@ -1,20 +1,7 @@
 'use client'
-import React, { HTMLAttributes, ReactNode } from 'react'
-import { MotionProps, HTMLMotionProps, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-type BaseProps = {
-  children?: ReactNode
-}
-
-// Button specific types
-type ButtonProps = { disabled?: boolean } & BaseProps & HTMLAttributes<HTMLButtonElement> & MotionProps
-
-// Link specific types
-type LinkProps = {
-  href: string
-} & BaseProps &
-  HTMLMotionProps<'div'>
+import { ButtonProps, LinkProps } from '@/types'
 
 const Button = ({ children, disabled, ...props }: ButtonProps) => {
   return (

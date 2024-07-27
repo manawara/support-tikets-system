@@ -1,17 +1,10 @@
 'use client'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import cancelIcon from '@/public/cancel_icon.svg'
 import Image from 'next/image'
-import { useState } from 'react'
-
-type NavTicketItemProps = {
-  name: string
-  count?: number
-  id: number
-  isClose?: boolean
-  onClick?: (id: number) => void
-}
+import cancelIcon from '@/public/cancel_icon.svg'
+import { BaseNavItem, NavItemType } from '../../types/NavList.type'
 
 const listItemVariants = {
   hidden: {
@@ -47,7 +40,7 @@ const cancelIconVariants = {
   },
 }
 
-const NavListItem = ({ name, count, id, isClose, onClick }: NavTicketItemProps) => {
+const NavListItem = ({ name, count, id, isClose, onClick }: NavItemType & BaseNavItem) => {
   const [isHovered, setIsHovered] = useState(false)
 
   return (

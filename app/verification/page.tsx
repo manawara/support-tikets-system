@@ -12,7 +12,6 @@ type SearchParamsType = {
 }
 const VerificationPage = async (searchParams: SearchParamsType) => {
   const token = searchParams
-  console.log(token)
 
   if (!token.searchParams.token) return redirect('/')
   const existingToken = await verificationAccount(token.searchParams.token)

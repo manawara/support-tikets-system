@@ -1,22 +1,13 @@
 'use client'
 
-import React, { useRef, useState } from 'react'
-import dotsIcon from '@/public/three_dots_icon.svg'
-import Image from 'next/image'
+import { useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
+import dotsIcon from '@/public/three_dots_icon.svg'
 import { useOutsideClick } from '@/hook/useOutsideClick'
 import { formatTextToSlug } from '@/lib/helper'
-
-type DropItem = {
-  id: number
-  name: string
-  href?: string
-}
-
-type DropDownType = {
-  data: DropItem[]
-}
+import { DropDownType } from '@/types'
 
 const DropDownDots = ({ data }: DropDownType) => {
   const [isOpen, setIsOpen] = useState(false)

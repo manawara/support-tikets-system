@@ -1,26 +1,21 @@
-import React from 'react'
+'use client'
+import { Suspense } from 'react'
 import TableHeader from './TableHeader'
 import TableBody from './TableBody'
 import TableFooter from './TableFooter'
+import Spinner from '../Spinner'
+import { TableType } from '@/types'
 
-export type ColumnType = {
-  key: keyof Record<string, number>
-  header: string
-}
-
-export type TableType = {
-  columns: ColumnType[]
-  data: Record<string, any>[]
-  namePage: string
-}
-const Table: React.FC<TableType> = ({ data, columns, namePage }) => {
+const Table: React.FC<TableType> = ({ data, columns, namePage, paginationOptions, loading }) => {
   return (
     <div className="overflow-x-auto custom-scrollbar border border-solid rounded-md border-gray-400">
       <div className="min-w-[800px]">
         <table className="min-w-full overflow-x-scroll ">
           <TableHeader columns={columns} />
-          <TableBody data={data} columns={columns} namePage={namePage} />
-          <TableFooter />
+          <Suspense fallback={<Spinner />}>
+            <TableBody data={data} columns={columns} namePage={namePage} loading={loading} />
+          </Suspense>
+          <TableFooter paginationOptions={paginationOptions} loading={loading} />
         </table>
       </div>
     </div>

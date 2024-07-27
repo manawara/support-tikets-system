@@ -8,9 +8,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from '../Button'
 import { LoginSchema } from '@/schemas'
 import { ErrorMessage } from '@hookform/error-message'
-import confirmIcon from '@/public/confrim_icon.svg'
-import Image from 'next/image'
 import loginUser from '@/actions/login'
+
 const FormLogin = () => {
   const [pending, startTransition] = useTransition()
   const [error, setError] = useState<string | undefined>('')

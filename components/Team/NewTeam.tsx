@@ -1,14 +1,15 @@
 'use client'
 import { useState, useRef, useEffect, useTransition } from 'react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 import { AnimatePresence, motion } from 'framer-motion'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { ErrorMessage } from '@hookform/error-message'
 import { Button } from '../Button'
 import Input from '../Input'
 import { addNewTeam } from '@/actions/team'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 import { schemaTeam } from '@/app/dashboard/team/schemaTeam'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { ErrorMessage } from '@hookform/error-message'
+
 const NewTeam = () => {
   const [open, setOpen] = useState(false)
   const [message, setMessage] = useState({

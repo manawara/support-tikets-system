@@ -1,22 +1,20 @@
 'use client'
-import { revalidatePath } from 'next/cache'
-import NavList from '../SidebarTicket/NavList'
+import NavList from '@/components/NavList/NavList'
 import { deleteTeam } from '@/actions/team'
-type NavListTeamType = {
-  id: number
-  name: string
-}
+import { ItemsTeam } from '@/types'
 
-type TeamType = {
-  teams: NavListTeamType[]
-}
-
-const NavListTeam = ({ teams }: TeamType) => {
+const NavListTeam = ({ teams }: { teams: ItemsTeam[] }) => {
   const handleDeleteItem = async (id: number) => {
     await deleteTeam(id)
   }
 
-  return <NavList title="Teams" items={teams} isClose onClick={handleDeleteItem} />
+  const itemsWithCount = teams.map((team: ItemsTeam) => ({
+    id: team.id,
+    name: team.name,
+    count: team._count.users,
+  }))
+
+  return <NavList title="Teams" items={itemsWithCount} isClose onClick={handleDeleteItem} />
 }
 
 export default NavListTeam

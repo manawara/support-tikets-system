@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import SelectItem from './SelectItem'
-import { SelectListProps } from './types'
+import { SelectListProps } from '@/types'
 
 const SelectList = ({ data, onSelect }: SelectListProps) => {
   return (

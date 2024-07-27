@@ -1,13 +1,7 @@
 'use client'
-import React, { InputHTMLAttributes, forwardRef } from 'react'
-import { AnimatePresence, MotionProps, motion } from 'framer-motion'
-
-type InputProps = {
-  label?: string
-  isExpanded?: boolean
-  placeholder?: string
-} & InputHTMLAttributes<HTMLInputElement> &
-  MotionProps
+import { forwardRef } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { InputProps } from '@/types'
 
 const Input = forwardRef<HTMLInputElement, InputProps>(({ label, isExpanded, placeholder, ...props }, ref) => {
   return (
