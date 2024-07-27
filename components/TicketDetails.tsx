@@ -1,5 +1,3 @@
-import React from 'react'
-
 const TicketDetails = ({ title }: { title: string }) => {
   return (
     <div className="flex flex-col my-4">
