@@ -13,6 +13,7 @@ const DropDownDots = ({ data }: DropDownType) => {
   const [isOpen, setIsOpen] = useState(false)
   const buttonRef = useRef<HTMLButtonElement>(null)
   useOutsideClick(buttonRef, () => setIsOpen(false))
+
   return (
     <div className="relative inline-block">
       <button
@@ -49,7 +50,11 @@ const DropDownDots = ({ data }: DropDownType) => {
                     {item.name}
                   </Link>
                 ) : (
-                  <button key={item.id} className="p-2 outline-none hover:bg-darkBlue  hover:text-gray-50">
+                  <button
+                    onClick={item.onDelete}
+                    key={item.id}
+                    className="p-2 outline-none hover:bg-darkBlue  hover:text-gray-50"
+                  >
                     {item.name}
                   </button>
                 )

@@ -3,7 +3,7 @@ import { TableType } from '@/types'
 import DropDownDots from '../DropDownDots'
 import Spinner from '../Spinner'
 
-const TableBody: React.FC<TableType> = ({ data, columns, namePage, loading }) => {
+const TableBody: React.FC<TableType> = ({ data, columns, namePage, loading, onDelete }) => {
   if (loading) {
     return (
       <tbody>
@@ -52,7 +52,7 @@ const TableBody: React.FC<TableType> = ({ data, columns, namePage, loading }) =>
                 <DropDownDots
                   data={[
                     { id: 1, name: 'Show details', href: namePage + '/' + item.uid },
-                    { id: 2, name: 'Delete' },
+                    { id: 2, name: 'Delete', onDelete: () => onDelete?.(item.id) },
                   ]}
                 />
               ) : (

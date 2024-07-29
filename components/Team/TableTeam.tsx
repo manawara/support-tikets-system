@@ -3,11 +3,12 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import Table from '../Table/Table'
 import { getAllUsers } from '@/data/team'
+import { deleteUser } from '@/actions/user'
 
 const TableTeam = () => {
   const [page, setPage] = useState(1)
 
-  const { status, data, error } = useQuery({
+  const { status, data, error, refetch } = useQuery({
     queryKey: ['users', page],
     queryFn: () => getAllUsers({ query: '', page, pageSize: 10 }),
   })
@@ -18,6 +19,11 @@ const TableTeam = () => {
 
   const handlePrevPage = () => {
     setPage((prev) => Math.max(1, prev - 1))
+  }
+
+  const handleDeleteUser = async (id: string) => {
+    await deleteUser(id)
+    refetch()
   }
 
   const columns = [
@@ -39,6 +45,7 @@ const TableTeam = () => {
         onPrev: handlePrevPage,
       }}
       loading={status === 'pending'}
+      onDelete={handleDeleteUser}
     />
   )
 }
