@@ -38,4 +38,10 @@ const LinkButton = ({ href, children, ...props }: LinkProps) => {
   )
 }
 
-export { Button, LinkButton }
+const ButtonActive = ({ children, active, ...props }: ButtonProps & { active?: boolean }) => (
+  <button className={`border-solid border px-3 py-1 rounded ${active ? 'bg-slate-50 text-darkBlue' : ''}`} {...props}>
+    {children}
+  </button>
+)
+
+export { Button, LinkButton, ButtonActive }
