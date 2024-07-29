@@ -14,4 +14,5 @@ export type TableType = {
   namePage: string
   paginationOptions?: PaginateType
   loading?: boolean
+  onDelete?: (id: string) => void
 }
