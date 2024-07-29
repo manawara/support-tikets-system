@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
 import Card from '../Card'
+import { UserWrapperProps } from '@/types'
 
 const UserWrapper = ({ title, description, children }: UserWrapperProps) => {
   return (
