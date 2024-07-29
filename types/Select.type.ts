@@ -4,6 +4,9 @@ export type SelectItemData = {
 }
 
 export type SelectProps = {
+  name?: string | undefined
+  value?: string | undefined
+  label?: string
   icon?: string
   data: SelectItemData[]
   placeholder?: string
